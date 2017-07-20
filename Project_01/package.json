@@ -14,6 +14,12 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "jade": "^1.11.0",
+    "moment": "^2.18.1",
+    "mongoose": "^4.11.3",
+    "pug": "^2.0.0-rc.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-infinite-scroller": "^1.0.7",
@@ -21,6 +27,7 @@
     "react-router-dom": "^4.0.0",
     "react-swipe": "^5.0.6",
     "swipe-js-iso": "^2.0.3",
+    "underscore": "^1.8.3",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
