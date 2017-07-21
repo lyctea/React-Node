@@ -15,7 +15,6 @@ callFetch({
     },
 });
 
-
 render((
     <div>
         <h1>Nicholas</h1>

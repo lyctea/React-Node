@@ -10,9 +10,7 @@ var port = process.env.PORT || 3303
 var app = express()
 
 mongooes.Promise = global.Promise
-// var db = mongooes.createConnection('localhost','movie') //数据库连接
-// db.on('error',console.error.bind(console,'连接错误: '))
-// db.once('open',()=>{console.log('数据库成功连接')})
+
 mongooes.connection.openUri('mongodb://localhost:27017/movie')
 const connect = mongooes.connection
 connect.on('error',console.error.bind(console,'连接错误: '))
@@ -27,8 +25,6 @@ app.use(express.static(path.join(__dirname,''))) //静态文件指定目录,又�
 app.locals.moment = require('moment')  //moment 模块用于格式化时间
 
 app.listen(port)  //监听端口
-
-console.log('test start port=' + port)
 
 //首页
 app.get('/',function (req,res) {
