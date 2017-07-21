@@ -6,7 +6,7 @@ const connect = mongoose.connection
 connect.on('error', console.error.bind(console, '连接错误: '))
 connect.once('open', () => {
     console.log('数据库成功连接')
-
+    
     //定义一个schema  数据库模版
     let Schema = mongoose.Schema({
         category: String,
@@ -14,6 +14,9 @@ connect.once('open', () => {
     })
 
     Schema.methods.eat = () => {
+        console.log("I've eatten one " + this.name)
+    }
+    Schema.methods.eat = function () {
         console.log("I've eatten one " + this.name)
     }
 
