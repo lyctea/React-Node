@@ -13,9 +13,6 @@ connect.once('open', () => {
         name: String
     })
 
-    Schema.methods.eat = () => {
-        console.log("I've eatten one " + this.name)
-    }
     Schema.methods.eat = function () {
         console.log("I've eatten one " + this.name)
     }
