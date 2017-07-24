@@ -38,11 +38,8 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 //引入后端路由
 const loginRouter = require('./routes')
-
-// app.engine("handlebars", handlebars.engine);
-// app.set("view engine", "handlebars");
-
-app.use(express.static("build")) // 托管静态文件
+// 托管静态文件
+app.use(express.static("build")) 
 
 //将前端路由请求/;跳转到index
 app.get('/', (req, res) => {
@@ -51,18 +48,22 @@ app.get('/', (req, res) => {
 
 //app.use('/login',loginRouter)
 
-// app.get('/login', (req, res) => {
-//     let userData = {
-//         loginName: req.body.loginName,
-//         passWord: req.body.passWord
-//     }
-//     res.json({
-//         code: '200',
-//         status: 'success',
-//         msg: '登陆成功'
-//     })
-// })
+app.post('/login', (req, res) => { 
+    /**
+     * 拿到请求数据
+     */
+    let userData = {
+        loginName: req.body.id,
+        passWord: req.body.password
+    }
+
+    res.json({
+        code: '200',
+        status: 'success',
+        msg: '登陆成功'
+    })
+})
 
 app.listen(port, () => {
     console.log('开始监听：' + port)
-})  //监听端口
+}) 
