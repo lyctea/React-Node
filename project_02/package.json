@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.17.2",
+    "express-handlebars": "^3.0.0",
     "mongoose": "^4.11.3",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
