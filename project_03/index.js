@@ -8,12 +8,16 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket)=>{
     console.log('a user connected')
+    //监听连接断开事件
     socket.on('disconnect', ()=>{
         console.log('user disconnect')
     })
+    //监听客户端发送消息事件
     socket.on('chat message', (msg)=>{
         console.log('message: ' + msg)
-    })
+        //向所有客户端广播事件
+        io.emit('chat message', msg)
+    }) 
 })
 
 http.listen(3000, () => {
