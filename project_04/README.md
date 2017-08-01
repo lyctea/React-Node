@@ -1,7 +1,6 @@
 ---
 title: Express英文官方文档实践
 tags: Node.js,Express
-grammar_cjkRuby: true
 ---
 
 # Getting started
@@ -138,3 +137,101 @@ On Windows系统, 执行以下命令:
 
 7 directories, 9 files
 ```
+## 基础路由
+应用的路由处理客户端通过URL或路径等特定的http请求方法(GET POST ...)的请求
+每一个路由当被匹配的时候, 都由一个或者多个的处理函数
+定义路由的方法
+
+``` stylus
+app.METHOD(PATH, HANDLER)
+```
+这里需要注意的几个点
+- app是express的实例
+- METHOD是HTTP请求方方法, 小写
+- PATH是服务器路径
+- HANDLER是当路由匹配的时候执行的方法
+
+### 路由简单实例
+
+相应'Hello World!'字符串在主页上
+
+``` stylus
+app.get('/', function(req,res){
+	res.send('Hello World!')
+})
+```
+相应一个post方法的请求
+
+``` stylus
+app.post('/', function (req, res) {
+  res.send('Got a POST request')
+}
+```
+相应PUT方法的请求, 匹配/user 路由
+
+``` stylus
+app.put('/user', function(req, res){
+	res.send('Got a PUT request a /user')
+})
+```
+相应DELETE方法的请求, 匹配/user 路由
+
+``` stylus
+app.delete('/user', function (req, res) {
+  res.send('Got a DELETE request at /user')
+})
+```
+## 在express中的静态文件
+静态文件, 图片 css javascript等,  使用express内置的中间件express.static处理. 
+
+通过命名的目录包含这些静态资源文件, express.static中间件函数开始直接为这些文件提供支持.
+例如:
+
+``` stylus
+app.user(express.static('public'))
+```
+现在可以加载这些文件了  ps:使用的是相对路径
+
+``` stylus
+http://localhost:3000/images/kitten.jpg
+http://localhost:3000/css/style.css
+http://localhost:3000/js/app.js
+http://localhost:3000/images/bg.png
+http://localhost:3000/hello.html
+```
+如果有多个静态资源目录, 调用express.static中间件多次即可
+
+``` stylus
+app.use(express.static('public'))
+app.use(express.static('files'))
+```
+express会按顺序设置这些静态文件
+
+### 虚拟前缀
+创建一个虚拟的前缀(这个前缀并不存在与服务器的文件系统中)
+
+``` stylus
+app.use('/static', express.static('public'))
+```
+
+现在可以通过这个虚拟的前缀访问到静态资源文件
+
+``` stylus
+http://localhost:3000/static/images/kitten.jpg
+http://localhost:3000/static/css/style.css
+http://localhost:3000/static/js/app.js
+http://localhost:3000/static/images/bg.png
+http://localhost:3000/static/hello.html
+```
+
+### 小结
+express.static使用相对路径加载静态文件当你加载你的node程序, 如果你从其他路径运行的express 应用,
+一个更安全的策略是使用绝对路径
+
+``` stylus
+app.use('/static', express.static(path.join(__dirname, 'public')))
+```
+
+
+
+
