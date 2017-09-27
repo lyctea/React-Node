@@ -52,7 +52,7 @@ function sersveStatic(response, cache, absPath) {
 	}
 }
 
-/**
+/**f
  * 创建HTTP服务器逻辑
  */
 var server = http.createServer(function(request, response) {
